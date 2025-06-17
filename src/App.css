@@ -1,38 +1,178 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Set overall background gradient */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #ffe0b2, #ffcccb, #ffffcc); /* Bhagwa, Light Red, Yellow */
   min-height: 100vh;
+}
+
+/* Main container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styling */
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #ff6f00;
+  text-shadow: 1px 1px 2px #ffcc80;
+}
+
+/* Subtitle */
+.subTitle {
+  font-size: 24px;
+  margin: 40px 0 10px;
+  color: #d84315;
+}
+
+/* Form styling */
+.form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Input styling */
+.input,
+.search-input {
+  padding: 8px;
+  font-size: 14px;
+  flex: 1 1 20%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff8e1;
+}
+
+/* Button section */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button,
+.search-btn,
+.reset-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button {
+  background-color: #007bff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-btn {
+  background-color: #28a745;
 }
+
+.reset-btn {
+  background-color: #6c757d;
+}
+
+/* Toast message */
+.toast {
+  background-color: rgba(0, 128, 0, 0.85);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+
+/* Student table */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff3e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table cell styling */
+.student-table th,
+.student-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+  background-color: #fffae5;
+}
+
+/* Table header */
+.student-table th {
+  background-color: #ffe082;
+  color: #4e342e;
+}
+
+/* Alternate rows */
+.student-table tr:nth-child(even) {
+  background-color: #fffde7;
+}
+
+.student-table tr:nth-child(odd) {
+  background-color: #ffe0b2;
+}
+
+/* Edit/Delete buttons */
+.editBtn,
+.deleteBtn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editBtn {
+  background-color: #e6ddc2;
+  color: black;
+}
+
+.deleteBtn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 32px;
+  margin-top: 50px;   /* Yeh line badha di gayi */
+  margin-bottom: 30px;
+}
+
+
+.social-icons a {
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.4);
+}
+
+.social-icons a:nth-child(1) { color: #E1306C; }   /* Instagram */
+.social-icons a:nth-child(2) { color: #000000; }   /* Threads */
+.social-icons a:nth-child(3) { color: #4285F4; }   /* Google */
+.social-icons a:nth-child(4) { color: #FF0000; }   /* YouTube */
+.social-icons a:nth-child(5) { color: #000000; }   /* TikTok */
+
