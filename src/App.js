@@ -11,6 +11,9 @@ function App() {
   const [searchId, setSearchId] = useState("");
   const [searchEmail, setSearchEmail] = useState("");
 
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+
   useEffect(() => {
     fetchStudents();
   }, []);
@@ -22,7 +25,6 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (editId) {
       await axios.put(`/api/students/${editId}`, form);
       setSuccessMessage("Student updated successfully!");
@@ -46,11 +48,23 @@ function App() {
     setEditId(student.id);
   };
 
-  const handleDelete = async (id) => {
-    await axios.delete(`/api/students/${id}`);
-    fetchStudents();
+  const confirmDelete = (id) => {
+    setShowConfirm(true);
+    setDeleteId(id);
+  };
+
+  const handleConfirmDelete = async () => {
+    await axios.delete(`/api/students/${deleteId}`);
     setSuccessMessage("Student deleted successfully!");
+    fetchStudents();
+    setShowConfirm(false);
+    setDeleteId(null);
     setTimeout(() => setSuccessMessage(""), 3000);
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirm(false);
+    setDeleteId(null);
   };
 
   const handleSearch = () => {
@@ -127,11 +141,23 @@ function App() {
               <td>{s.dob}</td>
               <td>{s.country}</td>
               <td><button className="editBtn" onClick={() => handleEdit(s)}>Edit</button></td>
-              <td><button className="deleteBtn" onClick={() => handleDelete(s.id)}>Delete</button></td>
+              <td><button className="deleteBtn" onClick={() => confirmDelete(s.id)}>Delete</button></td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {showConfirm && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>Are you sure you want to delete this student?</p>
+            <div className="modal-buttons">
+              <button className="yesBtn" onClick={handleConfirmDelete}>Yes</button>
+              <button className="noBtn" onClick={handleCancelDelete}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
